@@ -216,102 +216,129 @@ const Navbar = () => {
 
       {/* <div className=""> */}
       {drawerIsVisible ? (
-        <div className=" bg-white overflow-auto w-[20rem] backdrop-blur absolute right-0 top-[9rem] z-20 border">
+        <div className="bg-white overflow-hidden w-full sm:w-80 md:w-96 backdrop-blur fixed right-0 top-[6rem] z-20 border shadow-lg max-h-[calc(100vh-6rem)] flex flex-col rounded-none sm:rounded">
           <div>
-            <h1 className="bg-black text-white text-center font-bold">
+            <h1 className="bg-black text-white text-center font-bold text-lg px-4 py-3 flex items-center justify-between">
               CART
               <button
-                className="bg-black text-3xl text-white p-10"
+                className="bg-black text-2xl text-white p-0 ml-2 hover:text-gray-300 transition"
                 onClick={() => {
                   setDrawerIsVisible(false);
                 }}
+                title="Close cart"
               >
                 <IoIosArrowForward />
               </button>
             </h1>
           </div>
+
           {cart && cart.length > 0 ? (
             <>
-              {cart?.map((item, idx) => (
-                <div>
-                  <div className=" border-b  py-5 " key={item?.product_id}>
-                    <div className="flex justify-between items-center mx-4">
-                      <div>
-                        <img
-                          src={item?.img}
-                          alt={item?.name}
-                          className="w-12 h-12 object-cover"
-                        />
-                      </div>{" "}
-                      <div className="mt-5 flex-1 ml-3">
-                        <h1 className="text-base text-black ">{item?.name}</h1>
-                        <p className="text-s text-black">${item?.price}</p>
-                        <div>
-                          <button
-                            onClick={() => removeFromCart(item?.product_id)}
-                          >
-                            <AiOutlineDelete />
-                          </button>
+              {/* Scrollable cart items */}
+              <div className="overflow-y-auto flex-1">
+                {cart?.map((item, idx) => (
+                  <div key={item?.product_id}>
+                    <div className="border-b py-4 px-3">
+                      <div className="flex justify-between items-start gap-3">
+                        <div className="flex-shrink-0">
+                          <img
+                            src={item?.img}
+                            alt={item?.name}
+                            className="w-14 h-14 object-cover rounded"
+                          />
                         </div>
-                        <div>
-                          <div className="border flex items-center">
+                        <div className="flex-1 min-w-0">
+                          <h1 className="text-sm font-semibold text-black truncate">
+                            {item?.name}
+                          </h1>
+                          <p className="text-xs text-gray-600 mt-1">
+                            ${parseFloat(item?.price).toFixed(2)}
+                          </p>
+
+                          {/* Quantity Controls */}
+                          <div className="mt-2">
+                            <div className="border flex items-center w-fit rounded">
+                              <button
+                                className="text-sm text-black p-1.5 hover:bg-gray-100"
+                                onClick={() => {
+                                  updateQuantity(
+                                    item?.product_id,
+                                    Math.max(1, item?.quantity - 1),
+                                  );
+                                }}
+                                title="Decrease"
+                              >
+                                <IoIosArrowDown size={14} />
+                              </button>
+                              <span className="px-2 text-sm font-semibold">
+                                {item?.quantity}
+                              </span>
+                              <button
+                                className="text-sm text-black p-1.5 hover:bg-gray-100"
+                                onClick={() => {
+                                  updateQuantity(
+                                    item?.product_id,
+                                    item?.quantity + 1,
+                                  );
+                                }}
+                                title="Increase"
+                              >
+                                <IoIosArrowUp size={14} />
+                              </button>
+                            </div>
+                          </div>
+
+                          {/* Price and Delete */}
+                          <div className="flex justify-between items-center mt-2">
+                            <p className="text-sm font-semibold text-black">
+                              $
+                              {parseFloat(
+                                item?.total_price ||
+                                  item?.price * item?.quantity,
+                              ).toFixed(2)}
+                            </p>
                             <button
-                              className="text-base text-black p-1"
-                              onClick={() => {
-                                updateQuantity(
-                                  item?.product_id,
-                                  Math.max(1, item?.quantity - 1),
-                                );
-                              }}
+                              onClick={() => removeFromCart(item?.product_id)}
+                              className="text-red-500 hover:text-red-700 text-lg transition"
+                              title="Remove item"
                             >
-                              <IoIosArrowDown />
-                            </button>
-                            <span className="px-2">{item?.quantity}</span>
-                            <button
-                              className="text-base text-black p-1"
-                              onClick={() => {
-                                updateQuantity(
-                                  item?.product_id,
-                                  item?.quantity + 1,
-                                );
-                              }}
-                            >
-                              <IoIosArrowUp />
+                              <AiOutlineDelete />
                             </button>
                           </div>
-                        </div>
-                        <div className="text-base text-black">
-                          ${item?.total_price}
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              ))}
-              <div>
-                <button
-                  className="bg-black text-white mt-5 px-10 py-3 ml-5"
-                  onClick={() => {}}
-                >
-                  {" "}
-                  SubTotal
-                  <span className="text-base text-black right-2 absolute">
-                    ${grandTotal}.00
+                ))}
+              </div>
+
+              {/* Sticky footer with subtotal and checkout */}
+              <div className="border-t bg-gray-50 p-4 space-y-3">
+                <div className="flex justify-between items-center px-2">
+                  <span className="font-semibold text-black">Subtotal:</span>
+                  <span className="text-lg font-bold text-[#593735]">
+                    ${parseFloat(grandTotal || 0).toFixed(2)}
                   </span>
-                </button>
-                <div className="relative">
-                  <button
-                    className="bg-black text-white text-center  mt-5 px-20 py-3 ml-5"
-                    onClick={() => setPlaceOrder(true)}
-                  >
-                    Place Order
-                  </button>
                 </div>
+                <button
+                  className="w-full bg-black text-white font-bold py-2 px-3 rounded hover:bg-gray-800 transition text-sm"
+                  onClick={() => setPlaceOrder(true)}
+                >
+                  Place Order
+                </button>
+                <button
+                  className="w-full border-2 border-black text-black font-bold py-2 px-3 rounded hover:bg-gray-100 transition text-sm"
+                  onClick={() => {
+                    setDrawerIsVisible(false);
+                  }}
+                >
+                  Continue Shopping
+                </button>
               </div>
             </>
           ) : (
-            <div className="p-8 text-center">
-              <p className="text-gray-500">Your cart is empty</p>
+            <div className="flex-1 flex items-center justify-center p-6">
+              <p className="text-gray-500 text-center">Your cart is empty</p>
             </div>
           )}
         </div>

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useAtom } from "jotai";
+import useCart from "../../hooks/useCart";
 
 import {
   cartProducts,
@@ -24,8 +25,9 @@ import HomePage from "../../HomePage";
 // import { useNavigate } from "react-router-dom";
 const Cart = () => {
   // const navigate=useNavigate();
+  const { cart, loading, error, updateQuantity, removeFromCart } = useCart();
   const [cartItems, setCartItems] = useState([]);
-  console.log("cartItems", cartItems);
+  console.log("cartItems from hook:", cart);
   const [isSecondImageVisible, setIsSecondImageVisible] = useState(null);
   //   const [home,setHome] =useState(false);
   const [onClickIcon, setOnClickIcon] = useState(false);
@@ -42,7 +44,15 @@ const Cart = () => {
   const [totalPrice, setTotalPrice] = useAtom(finalPrice);
   const [isVisible, setIsVisible] = useState(false);
   const [drawerIsVisible, setDrawerIsVisible] = useAtom(drawer);
-  useEffect(() => {}, []);
+
+  // Update cart display whenever cart changes from useCart hook
+  useEffect(() => {
+    if (cart && cart.length > 0) {
+      setCartItems(cart);
+      console.log("Cart updated from hook:", cart);
+    }
+  }, [cart]);
+
   console.log("totalPrice", totalPrice);
 
   //   const[cartProducts,]= useAtom(cartProducts)
@@ -60,35 +70,31 @@ const Cart = () => {
       .catch((err) => console.error("Error fetching cart items:", err));
   };
 
-  useEffect(() => {
-    AddCart();
-  }, []);
-  const addItems = (select) => {
-    const productExist = orders?.find((item) => item.id === select.id)?.id;
-    console.log("productExist", productExist);
-    if (productExist) {
-      setOrders(
-        orders.map((item) =>
-          item.id === select.id
-            ? {
-                ...item,
-                quantity: (item?.quantity && Number(item?.quantity) + 1) || 1,
-              }
-            : { ...item },
-        ),
-      );
+  // Handle quantity increase
+  const addItems = async (productId) => {
+    const item = cart?.find(
+      (item) =>
+        String(item.product_id) === String(productId) ||
+        String(item.id) === String(productId),
+    );
+    if (item) {
+      const newQty = (item?.quantity || 1) + 1;
+      await updateQuantity(productId, newQty);
+      console.log("Quantity increased for product:", productId);
     }
   };
-  const delItems = (select) => {
-    const productExist = orders?.find((item) => item.id === select.id)?.id;
-    if (productExist) {
-      setOrders(
-        orders.map((item) =>
-          item.id === select.id
-            ? { ...item, quantity: (item?.quantity && item?.quantity - 1) || 1 }
-            : { ...item },
-        ),
-      );
+
+  // Handle quantity decrease
+  const delItems = async (productId) => {
+    const item = cart?.find(
+      (item) =>
+        String(item.product_id) === String(productId) ||
+        String(item.id) === String(productId),
+    );
+    if (item && item?.quantity > 1) {
+      const newQty = (item?.quantity || 1) - 1;
+      await updateQuantity(productId, newQty);
+      console.log("Quantity decreased for product:", productId);
     }
   };
 

@@ -37,6 +37,8 @@ const AddToCart = ({ product, showQuantity = true }) => {
     if (result.success) {
       setMessage({ type: "success", text: result.message });
       setQuantity(1);
+      // Dispatch custom event to notify all listeners that cart was updated
+      window.dispatchEvent(new Event("cartUpdated"));
       setTimeout(() => setMessage(null), 2000);
     } else {
       setMessage({ type: "error", text: result.message });

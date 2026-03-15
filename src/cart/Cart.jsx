@@ -61,7 +61,7 @@ const Cart = () => {
           </div>
         ) : (
           // Cart Items
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-0">
             {/* Items Table */}
             <div className="lg:col-span-2">
               <div className="bg-white border rounded-lg overflow-hidden">
@@ -145,44 +145,46 @@ const Cart = () => {
               </div>
             </div>
 
-            {/* Cart Summary */}
+            {/* Cart Summary Sidebar */}
             <div className="lg:col-span-1">
-              <div className="bg-gray-50 border rounded-lg p-6 sticky top-20">
-                <h2 className="text-2xl font-bold text-[#593735] mb-6">
+              <div className="bg-gray-50 border rounded-lg p-4 sm:p-6 hidden lg:block fixed right-4 xl:right-8 top-24 w-80 xl:w-96 max-h-[calc(100vh-120px)] overflow-y-auto shadow-lg">
+                <h2 className="text-xl sm:text-2xl font-bold text-[#593735] mb-4 sm:mb-6">
                   Order Summary
                 </h2>
 
                 {/* Stats */}
-                <div className="space-y-4 mb-6">
-                  <div className="flex justify-between text-gray-700">
+                <div className="space-y-3 sm:space-y-4 mb-4 sm:mb-6">
+                  <div className="flex justify-between text-sm sm:text-base text-gray-700">
                     <span>Items:</span>
                     <span className="font-semibold">{stats.itemsCount}</span>
                   </div>
-                  <div className="flex justify-between text-gray-700">
+                  <div className="flex justify-between text-sm sm:text-base text-gray-700">
                     <span>Quantity:</span>
                     <span className="font-semibold">{stats.itemCount}</span>
                   </div>
                 </div>
 
                 {/* Total */}
-                <div className="border-t pt-4 pb-6">
+                <div className="border-t pt-3 sm:pt-4 pb-4 sm:pb-6">
                   <div className="flex justify-between items-end">
-                    <span className="text-lg text-gray-700">Total:</span>
-                    <span className="text-3xl font-bold text-[#593735]">
+                    <span className="text-base sm:text-lg text-gray-700">
+                      Total:
+                    </span>
+                    <span className="text-2xl sm:text-3xl font-bold text-[#593735]">
                       ${stats.totalPrice.toFixed(2)}
                     </span>
                   </div>
                 </div>
 
                 {/* Checkout Button */}
-                <button className="w-full bg-[#593735] text-white font-bold py-3 rounded hover:bg-[#3d2423] transition text-lg mb-3">
+                <button className="w-full bg-[#593735] text-white font-bold py-2 sm:py-3 px-3 sm:px-4 rounded hover:bg-[#3d2423] transition text-sm sm:text-lg mb-2 sm:mb-3">
                   Proceed to Checkout
                 </button>
 
                 {/* Continue Shopping */}
                 <button
                   onClick={() => navigate("/AllMakeup")}
-                  className="w-full border-2 border-[#593735] text-[#593735] font-bold py-3 rounded hover:bg-gray-200 transition"
+                  className="w-full border-2 border-[#593735] text-[#593735] font-bold py-2 sm:py-3 px-3 sm:px-4 rounded hover:bg-gray-200 transition text-sm sm:text-base"
                 >
                   Continue Shopping
                 </button>

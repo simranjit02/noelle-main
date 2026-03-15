@@ -20,15 +20,18 @@ const useCart = () => {
     return 0;
   };
 
-  // Load cart from appropriate source
+  // Load cart from appropriate source  - wrapped in useCallback with empty deps to keep it stable
   const loadCart = useCallback(async () => {
+    const isUserLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+    const currentUserId = localStorage.getItem("userId");
+
     setLoading(true);
     setError(null);
 
     try {
-      if (isLoggedIn && userId) {
+      if (isUserLoggedIn && currentUserId) {
         const response = await fetch(
-          `${API_URL}/cart/get.php?user_id=${userId}`,
+          `${API_URL}/cart/get.php?user_id=${currentUserId}`,
         );
         const data = await response.json();
         console.log("Cart API response:", data); // Debug
@@ -59,17 +62,32 @@ const useCart = () => {
     } finally {
       setLoading(false);
     }
-  }, [isLoggedIn, userId]);
+  }, []);
 
-  // Store loadCart in ref for use in other callbacks
+  // Store loadCart in ref for use in other callbacks - keep this stable
   useEffect(() => {
     loadCartRef.current = loadCart;
   }, [loadCart]);
 
   // Load cart on mount and when user login state changes
   useEffect(() => {
-    loadCart();
-  }, [isLoggedIn, userId, loadCart]);
+    if (loadCartRef.current) {
+      loadCartRef.current();
+    }
+  }, [isLoggedIn, userId]);
+
+  // Listen for cart updates from other components
+  useEffect(() => {
+    const handleCartUpdate = () => {
+      console.log("Cart update event received, refreshing...");
+      if (loadCartRef.current) {
+        loadCartRef.current();
+      }
+    };
+
+    window.addEventListener("cartUpdated", handleCartUpdate);
+    return () => window.removeEventListener("cartUpdated", handleCartUpdate);
+  }, []);
 
   // Add product to cart
   const addToCart = useCallback(
@@ -97,6 +115,7 @@ const useCart = () => {
 
           if (data.status === "success") {
             if (loadCartRef.current) await loadCartRef.current();
+            window.dispatchEvent(new Event("cartUpdated"));
             return { success: true, message: "Product added to cart!" };
           } else {
             return {
@@ -135,6 +154,7 @@ const useCart = () => {
 
           setCart(updatedCart);
           localStorage.setItem(GUEST_CART_KEY, JSON.stringify(updatedCart));
+          window.dispatchEvent(new Event("cartUpdated"));
           return { success: true, message: "Product added to cart!" };
         }
       } catch (err) {
@@ -167,6 +187,7 @@ const useCart = () => {
 
           if (data.status === "success") {
             if (loadCartRef.current) await loadCartRef.current();
+            window.dispatchEvent(new Event("cartUpdated"));
             return { success: true, message: data.message };
           } else {
             setError(data.message);
@@ -214,6 +235,7 @@ const useCart = () => {
 
           if (data.status === "success") {
             if (loadCartRef.current) await loadCartRef.current();
+            window.dispatchEvent(new Event("cartUpdated"));
             return { success: true, message: data.message };
           } else {
             setError(data.message);
@@ -227,6 +249,7 @@ const useCart = () => {
           );
           setCart(updatedCart);
           localStorage.setItem(GUEST_CART_KEY, JSON.stringify(updatedCart));
+          window.dispatchEvent(new Event("cartUpdated"));
           return { success: true, message: "Quantity updated" };
         }
       } catch (err) {
