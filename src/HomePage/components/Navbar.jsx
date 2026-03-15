@@ -23,10 +23,12 @@ const Navbar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userName, setUserName] = useState('');
   const [select, setSelect] = useState({});
+  const { cart, removeFromCart, updateQuantity } = useCart();
   const [checkOut, setProductInfo] = useAtom(cartProducts);
   const [totalPrice, setTotalPrice] = useAtom(finalPrice);
   const [drawerIsVisible, setDrawerIsVisible] = useAtom(drawer);
   console.log("drawerIsVisible", drawerIsVisible);
+  console.log("Cart from useCart:", cart);
   // const[drawerIsVisible2,setDrawerIsVisible2] =useState(false);
 
   const array = [
@@ -98,13 +100,12 @@ const Navbar = () => {
   };
 
   useEffect(() => {
-    let data = 0;
-    const grandTotals = boughtProducts?.map((item) => {
-      data = Number(data) + Number(item?.totalPrice);
-    });
-    console.log("data++++++++++", data);
-    setGrandTotal(data);
-  }, [boughtProducts]);
+    let total = 0;
+    if (cart && cart.length > 0) {
+      total = cart.reduce((sum, item) => sum + (item?.total_price || 0), 0);
+    }
+    setGrandTotal(total);
+  }, [cart]);
 
   useEffect(() => {
     // Check if user is logged in
@@ -229,127 +230,85 @@ const Navbar = () => {
               </button>
             </h1>
           </div>
-          {boughtProducts?.map((item, idx) => (
+          {cart && cart.length > 0 ? (
+            <>
+              {cart?.map((item, idx) => (
             <div>
-              <div className=" border-b  py-5 " key={item?.id}>
+              <div className=" border-b  py-5 " key={item?.product_id}>
                 <div className="flex justify-between items-center mx-4">
                   <div>
-                    <img src={item?.img} alt="" />
+                    <img src={item?.img} alt={item?.name} className="w-12 h-12 object-cover" />
                   </div>
-                  .{" "}
-                  <div className="mt-5">
+                  {" "}
+                  <div className="mt-5 flex-1 ml-3">
                     <h1 className="text-base text-black ">{item?.name}</h1>
-                    <p className="text-s text-black">${item?.Price}</p>
+                    <p className="text-s text-black">${item?.price}</p>
                     <div>
                       <button
                         onClick={() =>
-                          setBoughtProducts(
-                            boughtProducts?.filter(
-                              (itema) => itema?.id !== item?.id,
-                            ),
-                          )
+                          removeFromCart(item?.product_id)
                         }
                       >
                         <AiOutlineDelete />
                       </button>
                     </div>
                     <div>
-                      <div className="border">
+                      <div className="border flex items-center">
                         <button
-                          className="text-base text-black"
+                          className="text-base text-black p-1"
                           onClick={() => {
-                            addItems(select);
-
-                            const contentData = boughtProducts.find(
-                              (ite) => ite?.id === item?.id,
-                            );
-
-                            contentData.quantity = item?.quantity + 1;
-                            contentData.totalPrice =
-                              item?.Price * contentData?.quantity;
-
-                            setBoughtProducts(
-                              boughtProducts?.map((val) =>
-                                val?.id === item?.id ? { ...contentData } : val,
-                              ),
-                            );
-                          }}
-                        >
-                          <IoIosArrowUp />
-                        </button>
-                        {item?.quantity}
-                        <button
-                          className="text-base text-black"
-                          onClick={() => {
-                            delItems(select);
-                            setTotalPrice(checkOut.Price * checkOut.quantity);
-                            const contentData = boughtProducts.find(
-                              (ite) => ite?.id === item?.id,
-                            );
-                            contentData.quantity =
-                              item?.quantity === 1 ? 1 : item?.quantity - 1;
-
-                            contentData.totalPrice =
-                              item?.Price * contentData?.quantity;
-
-                            console.log("contentData", contentData);
-                            setBoughtProducts(
-                              boughtProducts?.map((val) =>
-                                val?.id === item?.id ? { ...contentData } : val,
-                              ),
-                            );
+                            updateQuantity(item?.product_id, Math.max(1, item?.quantity - 1));
                           }}
                         >
                           <IoIosArrowDown />
                         </button>
+                        <span className="px-2">{item?.quantity}</span>
+                        <button
+                          className="text-base text-black p-1"
+                          onClick={() => {
+                            updateQuantity(item?.product_id, item?.quantity + 1);
+                          }}
+                        >
+                          <IoIosArrowUp />
+                        </button>
                       </div>
                     </div>
                     <div className="text-base text-black">
-                      {" "}
-                      ${item?.totalPrice}
+                      ${item?.total_price}
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           ))}
-          <div>
-            <button
-              className="bg-black text-white mt-5 px-10 py-3 ml-5"
-              onClick={() => {}}
-            >
-              {" "}
-              SubTotal
-              <span className="text-base text-black right-2 absolute">
-                ${grandTotal}.00
-              </span>
-            </button>
-            <div className="relative">
-              <button
-                className="bg-black text-white text-center  mt-5 px-20 py-3 ml-5"
-                onClick={() => setPlaceOrder(true)}
-              >
-                Place Order
-                {/* <p className="text-base text-black mt-5">Order Placed Successfully</p> */}
-              </button>
-              {/* ............................................drawer 2'..................................................... */}
-
-              <div className="bg-white m-32 p-32 absolute text-center backdrop-blur-lg">
-                <p
-                  className="text-xl font-bold text-black"
-                  onClick={() => {
-                    setPlaceOrder(true);
-                  }}
+              <div>
+                <button
+                  className="bg-black text-white mt-5 px-10 py-3 ml-5"
+                  onClick={() => {}}
                 >
-                  Order Placed Successfully
-                </p>
+                  {" "}
+                  SubTotal
+                  <span className="text-base text-black right-2 absolute">
+                    ${grandTotal}.00
+                  </span>
+                </button>
+                <div className="relative">
+                  <button
+                    className="bg-black text-white text-center  mt-5 px-20 py-3 ml-5"
+                    onClick={() => setPlaceOrder(true)}
+                  >
+                    Place Order
+                  </button>
+                </div>
               </div>
-            </div>{" "}
-          </div>
+            </>
+          ) : (
+            <div className="p-8 text-center">
+              <p className="text-gray-500">Your cart is empty</p>
+            </div>
+          )}
         </div>
-      ) : (
-        <div></div>
-      )}
+      ) : null}
     </div>
   );
 };
