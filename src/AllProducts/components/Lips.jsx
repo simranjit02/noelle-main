@@ -10,11 +10,12 @@ const Lips = () => {
   const [isSecondImageVisible, setIsSecondImageVisible] = useState(null);
   const [product, setProduct] = useAtom(cartProducts);
   const LipsMakeup = () => {
-    axios.get(" ../api.json").then((res) => {
-      setLipsItems(res?.data.filter((arrElem) => arrElem?.category === "Lips"));
-    });
+    const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:5000";
+    fetch(`${apiUrl}/api/products.php?category=Lips`)
+      .then((res) => res.json())
+      .then((data) => setLipsItems(data))
+      .catch((err) => console.error("Error fetching lips products:", err));
   };
-  console.log("LipsMakeup", LipsMakeup);
 
   useEffect(() => {
     LipsMakeup();

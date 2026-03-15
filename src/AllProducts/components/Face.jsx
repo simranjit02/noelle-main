@@ -10,11 +10,12 @@ const Face = () => {
   const [product, setProduct] = useAtom(cartProducts);
 
   const FaceMakeup = () => {
-    axios.get(" ../api.json").then((res) => {
-      setFaceItems(res?.data.filter((arrElem) => arrElem?.category === "Face"));
-    });
+    const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:5000";
+    fetch(`${apiUrl}/api/products.php?category=Face`)
+      .then((res) => res.json())
+      .then((data) => setFaceItems(data))
+      .catch((err) => console.error("Error fetching face products:", err));
   };
-  console.log("FaceMakeup", FaceMakeup);
 
   useEffect(() => {
     FaceMakeup();

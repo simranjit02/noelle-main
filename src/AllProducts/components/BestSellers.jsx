@@ -11,13 +11,12 @@ const BestSellers = () => {
   const [product, setProduct] = useAtom(cartProducts);
 
   const BestMakeup = () => {
-    axios.get(" ../api.json").then((res) => {
-      setBestItems(
-        res?.data.filter((arrElem) => arrElem?.newProducts === "new"),
-      );
-    });
+    const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:5000";
+    fetch(`${apiUrl}/api/products.php?new=1`)
+      .then((res) => res.json())
+      .then((data) => setBestItems(data))
+      .catch((err) => console.error("Error fetching best sellers:", err));
   };
-  console.log("BestMakeup", BestMakeup);
 
   useEffect(() => {
     BestMakeup();

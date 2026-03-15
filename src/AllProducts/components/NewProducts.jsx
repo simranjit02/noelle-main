@@ -10,13 +10,12 @@ const NewProducts = () => {
   const [product, setProduct] = useAtom(cartProducts);
 
   const NewMakeup = () => {
-    axios.get(" ../api.json").then((res) => {
-      setNewLaunchItems(
-        res?.data.filter((arrElem) => arrElem?.newProducts === "new"),
-      );
-    });
+    const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:5000";
+    fetch(`${apiUrl}/api/products.php?new=1`)
+      .then((res) => res.json())
+      .then((data) => setNewLaunchItems(data))
+      .catch((err) => console.error("Error fetching new products:", err));
   };
-  console.log("NewMakeup", NewMakeup);
 
   useEffect(() => {
     NewMakeup();

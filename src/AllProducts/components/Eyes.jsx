@@ -11,11 +11,12 @@ const Eyes = () => {
   const [product, setProduct] = useAtom(cartProducts);
   // const [select, setSelect] = useState({});
   const EyesMakeup = () => {
-    axios.get(" ../api.json").then((res) => {
-      setEyesItems(res?.data.filter((arrElem) => arrElem?.category === "Eye"));
-    });
+    const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:5000";
+    fetch(`${apiUrl}/api/products.php?category=Eye`)
+      .then((res) => res.json())
+      .then((data) => setEyesItems(data))
+      .catch((err) => console.error("Error fetching eye products:", err));
   };
-  console.log("EyesMakeup", EyesMakeup);
 
   useEffect(() => {
     EyesMakeup();

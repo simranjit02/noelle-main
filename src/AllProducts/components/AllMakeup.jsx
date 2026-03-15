@@ -20,15 +20,16 @@ const AllMakeup = () => {
   // const[dropdownopen,setDropDownOpen] =useState(false);
 
   const MakeupItems = (category) => {
-    axios.get(" ../api.json").then((res) => {
-      if (category)
-        setProducts(
-          res?.data.filter((arrElem) => arrElem?.category === category),
-        );
-      else setProducts(res?.data);
-    });
+    const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:5000";
+    const url = category
+      ? `${apiUrl}/api/products.php?category=${category}`
+      : `${apiUrl}/api/products.php`;
+
+    fetch(url)
+      .then((res) => res.json())
+      .then((data) => setProducts(data))
+      .catch((err) => console.error("Error fetching products:", err));
   };
-  console.log("MakeupItems", MakeupItems);
 
   useEffect(() => {
     MakeupItems();
