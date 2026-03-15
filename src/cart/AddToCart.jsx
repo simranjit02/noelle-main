@@ -3,7 +3,7 @@ import useCart from "../hooks/useCart";
 import { HiShoppingCart } from "react-icons/hi";
 
 const AddToCart = ({ product, showQuantity = true }) => {
-  const [quantity, setQuantity] = useState(1);
+  const [quantity, setQuantity] = useState(product?.quantity || 1);
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState(null);
   const { addToCart } = useCart();
@@ -27,7 +27,7 @@ const AddToCart = ({ product, showQuantity = true }) => {
       name: product.name || "Unknown Product",
       price: product.price || 0,
       img: product.img || "",
-      quantity: parseInt(quantity) || 1,
+      quantity: parseInt(product?.quantity || quantity) || 1,
     };
 
     console.log("Adding to cart:", productData);

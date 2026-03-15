@@ -198,8 +198,6 @@ const ProductDetail = () => {
                 product={{ ...displayProduct, quantity }}
                 showQuantity={false}
               />
-                showQuantity={false}
-              />
             </div>
           </div>
 

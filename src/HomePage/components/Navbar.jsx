@@ -199,14 +199,19 @@ const Navbar = () => {
                 </NavLink>
               </div>
             )}
-            <div className="text-2xl text-white cursor-pointer">
+            <div className="text-2xl text-white cursor-pointer relative">
               <button
-                className=""
+                className="relative"
                 onClick={() => {
                   setDrawerIsVisible(!drawerIsVisible);
                 }}
               >
                 <HiShoppingCart />
+                {cart && cart.length > 0 && (
+                  <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold">
+                    {cart.length}
+                  </span>
+                )}
               </button>
             </div>
           </div>

@@ -72,7 +72,7 @@ const AllMakeup = () => {
               } my-5 h-48 w-32`}
             >
               <p
-                className="text-base my-3 text-black"
+                className="text-base my-3 text-black cursor-pointer"
                 onClick={() => {
                   MakeupItems();
                 }}
@@ -80,7 +80,7 @@ const AllMakeup = () => {
                 All
               </p>
               <p
-                className="text-base my-3 text-black"
+                className="text-base my-3 text-black cursor-pointer"
                 onClick={() => {
                   MakeupItems("Eye");
                 }}
@@ -88,7 +88,7 @@ const AllMakeup = () => {
                 Eyes
               </p>
               <p
-                className="text-base my-3 text-black"
+                className="text-base my-3 text-black cursor-pointer"
                 onClick={() => {
                   MakeupItems("Face");
                 }}
@@ -96,7 +96,7 @@ const AllMakeup = () => {
                 Face
               </p>
               <p
-                className="text-base my-3 text-black"
+                className="text-base my-3 text-black cursor-pointer"
                 onClick={() => {
                   MakeupItems("Lips");
                 }}
@@ -105,7 +105,7 @@ const AllMakeup = () => {
               </p>
 
               <p
-                className="text-base my-3 text-black "
+                className="text-base my-3 text-black cursor-pointer"
                 onClick={() => {
                   MakeupItems();
                 }}
@@ -115,14 +115,15 @@ const AllMakeup = () => {
             </div>
           </div>
           <div className="flex gap-2 text-2xl">
-            <p
-              className="text-base text-black"
+            {/* <p
+              className="text-base text-black flex cursor-pointer"
               onClick={() => setOnClickIcon(!onClickIcon)}
             >
-              Clear Filters {<IoIosClose />}
-            </p>
+              <div className=""> Clear Filters</div>{" "}
+              <div className="mt-1">{<IoIosClose />}</div>
+            </p> */}
             {/* {onClickIcon ? <hide>  : <MakeupItems />  }nn
-             */}
+
 
             {/* <IoIosClose /> */}
           </div>
@@ -161,7 +162,7 @@ const AllMakeup = () => {
                 <div className="ml-16">
                   <p className="">{item?.name}</p>
                   <p>{item?.code}</p>
-                  <p>${item?.Price}</p>
+                  <p>{item?.price}</p>
                   {/* <p>{item?.des}</p> */}
                 </div>
               </div>{" "}
