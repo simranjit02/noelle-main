@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import useCart from "../hooks/useCart";
 
 const Register = () => {
   const navigate = useNavigate();
+  const { mergeGuestCartToUser } = useCart();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -71,6 +73,16 @@ const Register = () => {
         localStorage.setItem("userEmail", formData.email);
         localStorage.setItem("isLoggedIn", "true");
         localStorage.setItem("userName", formData.name);
+
+        // Merge guest cart to user cart
+        try {
+          const mergeResult = await mergeGuestCartToUser();
+          if (mergeResult.success) {
+            console.log("Cart merged:", mergeResult.message);
+          }
+        } catch (err) {
+          console.error("Error merging cart:", err);
+        }
 
         setSuccess("Registration successful! Redirecting to home...");
         setTimeout(() => {

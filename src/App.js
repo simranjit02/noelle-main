@@ -10,7 +10,7 @@ import BestSellers from "./AllProducts/components/BestSellers";
 import Face from "./AllProducts/components/Face";
 import Lips from "./AllProducts/components/Lips";
 import Eyes from "./AllProducts/components/Eyes";
-import Cart from "./AllProducts/components/Cart";
+import Cart from "./cart/Cart";
 
 // Auth imports
 import Register from "./auth/Register";
