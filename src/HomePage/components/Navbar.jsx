@@ -21,7 +21,7 @@ const Navbar = () => {
   const navigate = useNavigate();
   const [cartButton, setCartButton] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [userName, setUserName] = useState('');
+  const [userName, setUserName] = useState("");
   const [select, setSelect] = useState({});
   const { cart, removeFromCart, updateQuantity } = useCart();
   const [checkOut, setProductInfo] = useAtom(cartProducts);
@@ -109,8 +109,8 @@ const Navbar = () => {
 
   useEffect(() => {
     // Check if user is logged in
-    const loggedIn = localStorage.getItem('isLoggedIn') === 'true';
-    const userNameStored = localStorage.getItem('userName');
+    const loggedIn = localStorage.getItem("isLoggedIn") === "true";
+    const userNameStored = localStorage.getItem("userName");
     setIsLoggedIn(loggedIn);
     if (loggedIn && userNameStored) {
       setUserName(userNameStored);
@@ -118,13 +118,13 @@ const Navbar = () => {
   }, []);
 
   const handleLogout = () => {
-    localStorage.removeItem('userId');
-    localStorage.removeItem('userName');
-    localStorage.removeItem('userEmail');
-    localStorage.removeItem('isLoggedIn');
+    localStorage.removeItem("userId");
+    localStorage.removeItem("userName");
+    localStorage.removeItem("userEmail");
+    localStorage.removeItem("isLoggedIn");
     setIsLoggedIn(false);
-    setUserName('');
-    navigate('/');
+    setUserName("");
+    navigate("/");
   };
 
   return (
@@ -161,10 +161,10 @@ const Navbar = () => {
             ))}
           </div>
           <div className="flex justify-between items-center gap-4 mr-5">
-            <div 
+            <div
               className="text-4xl text-white cursor-pointer hover:text-[#b8a09f] transition"
-              onClick={() => !isLoggedIn && navigate('/login')}
-              title={isLoggedIn ? `Logged in as ${userName}` : 'Click to login'}
+              onClick={() => !isLoggedIn && navigate("/login")}
+              title={isLoggedIn ? `Logged in as ${userName}` : "Click to login"}
             >
               <HiUserCircle />
             </div>
@@ -174,7 +174,7 @@ const Navbar = () => {
                   <h3 className="text-xs md:text-sm text-white cursor-pointer hover:text-[#b8a09f] transition">
                     {userName}
                   </h3>
-                  <p 
+                  <p
                     className="text-xs text-[#b8a09f] cursor-pointer hover:underline"
                     onClick={handleLogout}
                   >
@@ -184,14 +184,14 @@ const Navbar = () => {
               </>
             ) : (
               <div className="flex text-white cursor-pointer text-xs md:text-sm">
-                <NavLink 
+                <NavLink
                   to="/login"
                   className="hover:text-[#b8a09f] transition hover:underline"
                 >
                   Log in
                 </NavLink>
                 <span className="mx-2">/</span>
-                <NavLink 
+                <NavLink
                   to="/register"
                   className="hover:text-[#b8a09f] transition hover:underline"
                 >
@@ -233,54 +233,61 @@ const Navbar = () => {
           {cart && cart.length > 0 ? (
             <>
               {cart?.map((item, idx) => (
-            <div>
-              <div className=" border-b  py-5 " key={item?.product_id}>
-                <div className="flex justify-between items-center mx-4">
-                  <div>
-                    <img src={item?.img} alt={item?.name} className="w-12 h-12 object-cover" />
-                  </div>
-                  {" "}
-                  <div className="mt-5 flex-1 ml-3">
-                    <h1 className="text-base text-black ">{item?.name}</h1>
-                    <p className="text-s text-black">${item?.price}</p>
-                    <div>
-                      <button
-                        onClick={() =>
-                          removeFromCart(item?.product_id)
-                        }
-                      >
-                        <AiOutlineDelete />
-                      </button>
-                    </div>
-                    <div>
-                      <div className="border flex items-center">
-                        <button
-                          className="text-base text-black p-1"
-                          onClick={() => {
-                            updateQuantity(item?.product_id, Math.max(1, item?.quantity - 1));
-                          }}
-                        >
-                          <IoIosArrowDown />
-                        </button>
-                        <span className="px-2">{item?.quantity}</span>
-                        <button
-                          className="text-base text-black p-1"
-                          onClick={() => {
-                            updateQuantity(item?.product_id, item?.quantity + 1);
-                          }}
-                        >
-                          <IoIosArrowUp />
-                        </button>
+                <div>
+                  <div className=" border-b  py-5 " key={item?.product_id}>
+                    <div className="flex justify-between items-center mx-4">
+                      <div>
+                        <img
+                          src={item?.img}
+                          alt={item?.name}
+                          className="w-12 h-12 object-cover"
+                        />
+                      </div>{" "}
+                      <div className="mt-5 flex-1 ml-3">
+                        <h1 className="text-base text-black ">{item?.name}</h1>
+                        <p className="text-s text-black">${item?.price}</p>
+                        <div>
+                          <button
+                            onClick={() => removeFromCart(item?.product_id)}
+                          >
+                            <AiOutlineDelete />
+                          </button>
+                        </div>
+                        <div>
+                          <div className="border flex items-center">
+                            <button
+                              className="text-base text-black p-1"
+                              onClick={() => {
+                                updateQuantity(
+                                  item?.product_id,
+                                  Math.max(1, item?.quantity - 1),
+                                );
+                              }}
+                            >
+                              <IoIosArrowDown />
+                            </button>
+                            <span className="px-2">{item?.quantity}</span>
+                            <button
+                              className="text-base text-black p-1"
+                              onClick={() => {
+                                updateQuantity(
+                                  item?.product_id,
+                                  item?.quantity + 1,
+                                );
+                              }}
+                            >
+                              <IoIosArrowUp />
+                            </button>
+                          </div>
+                        </div>
+                        <div className="text-base text-black">
+                          ${item?.total_price}
+                        </div>
                       </div>
-                    </div>
-                    <div className="text-base text-black">
-                      ${item?.total_price}
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
-          ))}
+              ))}
               <div>
                 <button
                   className="bg-black text-white mt-5 px-10 py-3 ml-5"
