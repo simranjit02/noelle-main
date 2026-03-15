@@ -29,7 +29,7 @@ const ProductDetail = () => {
           if (Array.isArray(data) && data.length > 0) {
             console.log("Setting product:", data[0]);
             setApiProduct(data[0]);
-          } else if (data && typeof data === 'object' && !Array.isArray(data)) {
+          } else if (data && typeof data === "object" && !Array.isArray(data)) {
             // Handle case where API returns single object instead of array
             console.log("Setting product (single object):", data);
             setApiProduct(data);
@@ -115,7 +115,8 @@ const ProductDetail = () => {
                 {displayProduct.name}
               </h1>
               <p className="text-gray-600 text-sm mb-4">
-                SKU: <span className="font-semibold">{displayProduct.code}</span>
+                SKU:{" "}
+                <span className="font-semibold">{displayProduct.code}</span>
               </p>
 
               {/* Price */}

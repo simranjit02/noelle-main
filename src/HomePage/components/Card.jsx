@@ -1,10 +1,15 @@
 import React, { useState } from "react";
+import { NavLink } from "react-router-dom";
 
-const Card = ({id,image1,image2,title,price}) => {
+const Card = ({ id, image1, image2, title, price }) => {
   const [isSecondImageVisible, setIsSecondImageVisible] = useState(null);
 
   return (
-    <div className="  w-1/4 " key={id}>
+    <NavLink
+      to={`/ProductDetail?id=${id}`}
+      className="  w-1/3  mx-auto  "
+      key={id}
+    >
       <div
         className=""
         onMouseOver={() => setIsSecondImageVisible(id)}
@@ -22,7 +27,7 @@ const Card = ({id,image1,image2,title,price}) => {
       </div>
       <p className=" text-base text-black text-center">{title}</p>
       <p className="text-base text-black text-center">{price}</p>
-    </div>
+    </NavLink>
   );
 };
 
