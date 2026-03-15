@@ -130,7 +130,7 @@ const AllMakeup = () => {
 
         <div className="flex flex-wrap">
           {products?.map((item) => (
-            <NavLink to="/Cart" className=" w-1/4">
+            <NavLink to={`/ProductDetail?id=${item.id}`} className=" w-1/4">
               <div
                 className=" p-5 bg-white w-full  "
                 onClick={() => {

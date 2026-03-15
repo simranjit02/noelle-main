@@ -7,6 +7,7 @@ import {
   finalPrice,
   drawer,
 } from "../../store/jotaistore";
+import useCart from "../../hooks/useCart";
 // import Search from './components/Search';
 import {
   IoIosArrowUp,
@@ -201,7 +202,7 @@ const Navbar = () => {
               <button
                 className=""
                 onClick={() => {
-                  setCartButton(cartButton(true));
+                  setDrawerIsVisible(!drawerIsVisible);
                 }}
               >
                 <HiShoppingCart />
@@ -221,7 +222,7 @@ const Navbar = () => {
               <button
                 className="bg-black text-3xl text-white p-10"
                 onClick={() => {
-                  setCartButton(false);
+                  setDrawerIsVisible(false);
                 }}
               >
                 <IoIosArrowForward />

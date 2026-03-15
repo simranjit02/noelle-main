@@ -1,21 +1,24 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 
 const GUEST_CART_KEY = "noelle_guest_cart";
 const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
 
-export const useCart = () => {
+const useCart = () => {
   const [cart, setCart] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-
-  // Get current user info
   const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
   const userId = localStorage.getItem("userId");
+  const loadCartRef = useRef(null);
 
-  // Load cart on mount
-  useEffect(() => {
-    loadCart();
-  }, [isLoggedIn, userId]);
+  // Helper to extract price as number
+  const getPriceAsNumber = (price) => {
+    if (typeof price === "number") return price;
+    if (typeof price === "string") {
+      return parseFloat(price.replace("$", "").replace(",", "")) || 0;
+    }
+    return 0;
+  };
 
   // Load cart from appropriate source
   const loadCart = useCallback(async () => {
@@ -24,22 +27,28 @@ export const useCart = () => {
 
     try {
       if (isLoggedIn && userId) {
-        // Fetch cart from database for logged-in user
         const response = await fetch(
           `${API_URL}/cart/get.php?user_id=${userId}`,
         );
         const data = await response.json();
+        console.log("Cart API response:", data); // Debug
 
         if (data.status === "success") {
           setCart(data.data || []);
+          console.log("Cart loaded:", data.data); // Debug
         } else {
           setError(data.message);
+          setCart([]);
         }
       } else {
-        // Load cart from localStorage for guest user
         const guestCart = localStorage.getItem(GUEST_CART_KEY);
         if (guestCart) {
-          setCart(JSON.parse(guestCart));
+          try {
+            setCart(JSON.parse(guestCart));
+          } catch (e) {
+            console.error("Error parsing guest cart:", e);
+            setCart([]);
+          }
         } else {
           setCart([]);
         }
@@ -52,11 +61,25 @@ export const useCart = () => {
     }
   }, [isLoggedIn, userId]);
 
+  // Store loadCart in ref for use in other callbacks
+  useEffect(() => {
+    loadCartRef.current = loadCart;
+  }, [loadCart]);
+
+  // Load cart on mount and when user login state changes
+  useEffect(() => {
+    loadCart();
+  }, [isLoggedIn, userId, loadCart]);
+
   // Add product to cart
   const addToCart = useCallback(
     async (product) => {
       try {
         setError(null);
+
+        if (!product || !product.id) {
+          return { success: false, message: "Invalid product data" };
+        }
 
         if (isLoggedIn && userId) {
           // Add to database cart
@@ -65,59 +88,63 @@ export const useCart = () => {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
               user_id: userId,
-              product_id: product.id,
-              quantity: product.quantity || 1,
+              product_id: String(product.id),
+              quantity: parseInt(product.quantity) || 1,
             }),
           });
 
           const data = await response.json();
 
           if (data.status === "success") {
-            await loadCart(); // Refresh cart
-            return { success: true, message: data.message };
+            if (loadCartRef.current) await loadCartRef.current();
+            return { success: true, message: "Product added to cart!" };
           } else {
-            setError(data.message);
-            return { success: false, message: data.message };
+            return {
+              success: false,
+              message: data.message || "Failed to add to cart",
+            };
           }
         } else {
           // Add to localStorage cart
           const existingProduct = cart.find(
-            (item) => item.product_id === product.id,
+            (item) => String(item.product_id) === String(product.id),
           );
 
           let updatedCart;
           if (existingProduct) {
-            // Update quantity if product exists
             updatedCart = cart.map((item) =>
-              item.product_id === product.id
-                ? { ...item, quantity: item.quantity + (product.quantity || 1) }
+              String(item.product_id) === String(product.id)
+                ? {
+                    ...item,
+                    quantity: item.quantity + (parseInt(product.quantity) || 1),
+                  }
                 : item,
             );
           } else {
-            // Add new product
             updatedCart = [
               ...cart,
               {
                 product_id: product.id,
                 name: product.name,
-                price: product.price,
+                price: getPriceAsNumber(product.price),
                 img: product.img,
-                quantity: product.quantity || 1,
+                quantity: parseInt(product.quantity) || 1,
               },
             ];
           }
 
           setCart(updatedCart);
           localStorage.setItem(GUEST_CART_KEY, JSON.stringify(updatedCart));
-          return { success: true, message: "Added to cart" };
+          return { success: true, message: "Product added to cart!" };
         }
       } catch (err) {
         const message = `Error adding to cart: ${err.message}`;
         setError(message);
+        console.error("Error in addToCart:", err);
         return { success: false, message };
       }
     },
-    [isLoggedIn, userId, cart, loadCart],
+    [isLoggedIn, userId, cart],
   );
 
   // Remove product from cart
@@ -127,29 +154,27 @@ export const useCart = () => {
         setError(null);
 
         if (isLoggedIn && userId) {
-          // Remove from database cart
           const response = await fetch(`${API_URL}/cart/remove.php`, {
             method: "DELETE",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
               user_id: userId,
-              product_id: productId,
+              product_id: String(productId),
             }),
           });
 
           const data = await response.json();
 
           if (data.status === "success") {
-            await loadCart(); // Refresh cart
+            if (loadCartRef.current) await loadCartRef.current();
             return { success: true, message: data.message };
           } else {
             setError(data.message);
             return { success: false, message: data.message };
           }
         } else {
-          // Remove from localStorage cart
           const updatedCart = cart.filter(
-            (item) => item.product_id !== productId,
+            (item) => String(item.product_id) !== String(productId),
           );
           setCart(updatedCart);
           localStorage.setItem(GUEST_CART_KEY, JSON.stringify(updatedCart));
@@ -161,7 +186,7 @@ export const useCart = () => {
         return { success: false, message };
       }
     },
-    [isLoggedIn, userId, cart, loadCart],
+    [isLoggedIn, userId, cart],
   );
 
   // Update product quantity
@@ -175,31 +200,29 @@ export const useCart = () => {
         }
 
         if (isLoggedIn && userId) {
-          // Update in database cart
           const response = await fetch(`${API_URL}/cart/update.php`, {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
               user_id: userId,
-              product_id: productId,
-              quantity: newQuantity,
+              product_id: String(productId),
+              quantity: parseInt(newQuantity),
             }),
           });
 
           const data = await response.json();
 
           if (data.status === "success") {
-            await loadCart(); // Refresh cart
+            if (loadCartRef.current) await loadCartRef.current();
             return { success: true, message: data.message };
           } else {
             setError(data.message);
             return { success: false, message: data.message };
           }
         } else {
-          // Update in localStorage cart
           const updatedCart = cart.map((item) =>
-            item.product_id === productId
-              ? { ...item, quantity: newQuantity }
+            String(item.product_id) === String(productId)
+              ? { ...item, quantity: parseInt(newQuantity) }
               : item,
           );
           setCart(updatedCart);
@@ -212,10 +235,10 @@ export const useCart = () => {
         return { success: false, message };
       }
     },
-    [isLoggedIn, userId, cart, loadCart, removeFromCart],
+    [isLoggedIn, userId, cart, removeFromCart],
   );
 
-  // Merge guest cart to user cart (called after login)
+  // Merge guest cart to user cart
   const mergeGuestCartToUser = useCallback(async () => {
     try {
       setError(null);
@@ -238,10 +261,8 @@ export const useCart = () => {
           const data = await response.json();
 
           if (data.status === "success") {
-            // Clear guest cart from localStorage
             localStorage.removeItem(GUEST_CART_KEY);
-            // Reload cart from database
-            await loadCart();
+            if (loadCartRef.current) await loadCartRef.current();
             return {
               success: true,
               message: data.message,
@@ -256,15 +277,15 @@ export const useCart = () => {
       setError(message);
       return { success: false, message };
     }
-  }, [isLoggedIn, userId, loadCart]);
+  }, [isLoggedIn, userId]);
 
   // Get cart statistics
   const getCartStats = useCallback(() => {
     const itemCount = cart.reduce((sum, item) => sum + item.quantity, 0);
-    const totalPrice = cart.reduce(
-      (sum, item) => sum + item.price * item.quantity,
-      0,
-    );
+    const totalPrice = cart.reduce((sum, item) => {
+      const price = getPriceAsNumber(item.price);
+      return sum + price * item.quantity;
+    }, 0);
 
     return {
       itemCount,
@@ -277,27 +298,22 @@ export const useCart = () => {
   const clearCart = useCallback(async () => {
     try {
       setError(null);
-
-      if (isLoggedIn && userId) {
-        // Delete all items from database (would need a clear endpoint)
-        // For now, just reload empty
-        setCart([]);
-      } else {
-        setCart([]);
-        localStorage.removeItem(GUEST_CART_KEY);
-      }
+      setCart([]);
+      localStorage.removeItem(GUEST_CART_KEY);
       return { success: true, message: "Cart cleared" };
     } catch (err) {
       const message = `Error clearing cart: ${err.message}`;
       setError(message);
       return { success: false, message };
     }
-  }, [isLoggedIn, userId]);
+  }, []);
 
   return {
     cart,
     loading,
     error,
+    isLoggedIn,
+    userId,
     addToCart,
     removeFromCart,
     updateQuantity,
@@ -305,7 +321,6 @@ export const useCart = () => {
     getCartStats,
     clearCart,
     loadCart,
-    isLoggedIn,
   };
 };
 

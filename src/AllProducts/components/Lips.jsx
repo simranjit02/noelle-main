@@ -22,37 +22,40 @@ const Lips = () => {
   }, []);
   return (
     <div>
-      <NavLink to="/Cart" className=" ">
-        <div className="Lips text-white text-center p-32">
-          <h1 className="text-8xl font-bold">LIPS</h1>
-        </div>
-        <div className="bg-white py-32 px-48 flex flex-wrap ">
-          {/* <div className="bg-white py-32 px-48 flex flex-wrap " > */}
-          {lipsItems?.map((item) => (
+      <div className="Lips text-white text-center p-32">
+        <h1 className="text-8xl font-bold">LIPS</h1>
+      </div>
+      <div className="bg-white py-32 px-48 flex flex-wrap ">
+        {lipsItems?.map((item) => (
+          <NavLink
+            to={`/ProductDetail?id=${item.id}`}
+            key={item?.id}
+            className="w-1/3"
+          >
             <div
-              className=" p-5 bg-white w-1/3  "
+              className="p-5 bg-white w-full"
               onClick={() => {
                 setProduct({ ...item, quantity: 1 });
               }}
             >
-              <div className=" mx-10" key={item?.id}>
+              <div className="mx-10">
                 <div
                   className=""
                   onMouseOver={() => setIsSecondImageVisible(item?.id)}
                   onMouseOut={() => setIsSecondImageVisible(null)}
                 >
                   {isSecondImageVisible === item?.id ? (
-                    <div className="  flex  ">
+                    <div className="flex">
                       <img
                         src={item?.img2}
                         alt=""
-                        className=" "
+                        className=""
                         height="272"
                         width="272"
                       />
                     </div>
                   ) : (
-                    <div className="  ">
+                    <div>
                       <img src={item?.img} alt="" height="272" width="272" />
                     </div>
                   )}
@@ -63,9 +66,9 @@ const Lips = () => {
                 <p className="text-black ml-16">{item?.Price}</p>
               </div>
             </div>
-          ))}
-        </div>
-      </NavLink>
+          </NavLink>
+        ))}
+      </div>
     </div>
   );
 };

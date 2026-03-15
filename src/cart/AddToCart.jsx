@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import useCart from "../../hooks/useCart";
+import useCart from "../hooks/useCart";
 import { HiShoppingCart } from "react-icons/hi";
 
 const AddToCart = ({ product, showQuantity = true }) => {
@@ -9,17 +9,34 @@ const AddToCart = ({ product, showQuantity = true }) => {
   const { addToCart } = useCart();
 
   const handleAddToCart = async () => {
+    // Validation
+    if (!product || !product.id) {
+      setMessage({
+        type: "error",
+        text: "Product information is missing",
+      });
+      setTimeout(() => setMessage(null), 3000);
+      return;
+    }
+
     setLoading(true);
     setMessage(null);
 
-    const result = await addToCart({
-      ...product,
-      quantity,
-    });
+    const productData = {
+      id: product.id,
+      name: product.name || "Unknown Product",
+      price: product.price || 0,
+      img: product.img || "",
+      quantity: parseInt(quantity) || 1,
+    };
+
+    console.log("Adding to cart:", productData);
+
+    const result = await addToCart(productData);
 
     if (result.success) {
       setMessage({ type: "success", text: result.message });
-      setQuantity(1); // Reset quantity
+      setQuantity(1);
       setTimeout(() => setMessage(null), 2000);
     } else {
       setMessage({ type: "error", text: result.message });
@@ -79,7 +96,7 @@ const AddToCart = ({ product, showQuantity = true }) => {
       {/* Message Display */}
       {message && (
         <div
-          className={`p-3 rounded text-center font-semibold ${
+          className={`p-4 rounded text-center font-semibold ${
             message.type === "success"
               ? "bg-green-100 text-green-800"
               : "bg-red-100 text-red-800"

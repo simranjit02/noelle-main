@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
-import useCart from "../../hooks/useCart";
-import { BsTrash3 } from "react-icons/bs";
+import useCart from "../hooks/useCart";
+import { BsTrash } from "react-icons/bs";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 
 const Cart = () => {
@@ -10,6 +10,9 @@ const Cart = () => {
     useCart();
 
   const stats = getCartStats();
+
+  console.log("Cart data:", cart); // Debug log
+  console.log("Loading:", loading, "Error:", error); // Debug log
 
   if (loading) {
     return (
@@ -134,7 +137,7 @@ const Cart = () => {
                         className="text-red-600 hover:text-red-800 text-2xl transition"
                         title="Remove from cart"
                       >
-                        <BsTrash3 />
+                        <BsTrash />
                       </button>
                     </div>
                   </div>

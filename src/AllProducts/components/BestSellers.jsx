@@ -28,46 +28,53 @@ const BestSellers = () => {
       </div>
       <div className="">
         <div className="   ">
-          <NavLink
-            to="/Cart"
-            className="flex-wrap bg-white py-32 px-48 flex flex-wrap"
-          >
+          <div className="flex-wrap bg-white py-32 px-48 flex flex-wrap">
             {bestItems?.map((item) => (
-              <div
+              <NavLink
+                to={`/ProductDetail?id=${item.id}`}
                 className=" p-5  bg-white w-1/3  "
-                onClick={() => {
-                  setProduct({ ...item, quantity: 1 });
-                }}
               >
-                <div className=" mx-10" key={item?.id}>
-                  <div
-                    className=""
-                    onMouseOver={() => setIsSecondImageVisible(item?.id)}
-                    onMouseOut={() => setIsSecondImageVisible(null)}
-                  >
-                    {isSecondImageVisible === item?.id ? (
-                      <div className="  flex  ">
-                        <img
-                          src={item?.img2}
-                          alt=""
-                          className=" "
-                          height="272"
-                          width="272"
-                        />
-                      </div>
-                    ) : (
-                      <div className="  ">
-                        <img src={item?.img} alt="" height="272" width="272" />
-                      </div>
-                    )}
+                <div
+                  className=""
+                  onClick={() => {
+                    setProduct({ ...item, quantity: 1 });
+                  }}
+                >
+                  <div className=" mx-10" key={item?.id}>
+                    <div
+                      className=""
+                      onMouseOver={() => setIsSecondImageVisible(item?.id)}
+                      onMouseOut={() => setIsSecondImageVisible(null)}
+                    >
+                      {isSecondImageVisible === item?.id ? (
+                        <div className="  flex  ">
+                          <img
+                            src={item?.img2}
+                            alt=""
+                            className=" "
+                            height="272"
+                            width="272"
+                          />
+                        </div>
+                      ) : (
+                        <div className="  ">
+                          <img
+                            src={item?.img}
+                            alt=""
+                            height="272"
+                            width="272"
+                          />
+                        </div>
+                      )}
+                    </div>
                   </div>
+                  <p className="text-black ml-16">{item?.name}</p>
+                  <p className="text-black ml-16">{item?.code}</p>
+                  <p className="text-black ml-16">{item?.Price}</p>
                 </div>
-                <p className="text-black ml-16">{item?.name}</p>
-                <p className="text-black ml-16">{item?.code}</p>
-                <p className="text-black ml-16">{item?.Price}</p>
-              </div>
+              </NavLink>
             ))}
-          </NavLink>
+          </div>
         </div>
       </div>
     </div>

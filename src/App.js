@@ -10,6 +10,7 @@ import BestSellers from "./AllProducts/components/BestSellers";
 import Face from "./AllProducts/components/Face";
 import Lips from "./AllProducts/components/Lips";
 import Eyes from "./AllProducts/components/Eyes";
+import ProductDetail from "./AllProducts/components/ProductDetail";
 import Cart from "./cart/Cart";
 
 // Auth imports
@@ -35,6 +36,7 @@ function App() {
         <Route path="/Lips" element={<Lips />} />
         <Route path="/Face" element={<Face />} />
         <Route path="/Eyes" element={<Eyes />} />
+        <Route path="/ProductDetail" element={<ProductDetail />} />
         <Route path="/Cart" element={<Cart />} />
 
         {/* <Route path="/Axios/:userId" element={<UserProfile />}></Route> */}
