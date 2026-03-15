@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,600;0,700;1,500&display=swap');
+
+.italicFont{
+  font-family: 'Dancing Script', cursive;
+
+}
+
+ *{
+  font-family: 'Lora', serif;
+} */
+
+.primary_color {
+  background-color:#593735;
+}
+
+.FooterBgColor
+{
+  background-color: black;
+}
+.headerImage
+{
+  background-image: url(https://static.wixstatic.com/media/2e2a49_db29dbd54f594c648ec3807b118e6718~mv2.jpg/v1/fill/w_1349,h_804,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/2e2a49_db29dbd54f594c648ec3807b118e6718~mv2.jpg);
+  background-size: cover;
+  background-position: center;
+  
+  height: 100vh;
+  width:100%;
+
+}
+.productImages {
+  background-image: 
+   url(https://static.parastorage.com/services/instagram-cdn/1.743.0/assets/ig-templates-accounts/Editor/Beauty%20Store/01.jpg);
+   background-image: 
+ url(https://static.parastorage.com/services/instagram-cdn/1.743.0/assets/ig-templates-accounts/Editor/Beauty%20Store/02.jpg);
+ background-image: 
+url(https://static.parastorage.com/services/instagram-cdn/1.743.0/assets/ig-templates-accounts/Editor/Beauty%20Store/03.jpg);
+background-image: 
+url(https://static.parastorage.com/services/instagram-cdn/1.743.0/assets/ig-templates-accounts/Editor/Beauty%20Store/04.jpg);
+background-image: 
+ url(https://static.parastorage.com/services/instagram-cdn/1.743.0/assets/ig-templates-accounts/Editor/Beauty%20Store/05.jpg);
+ background-size: cover;
+ 
+
+  
+}
+.bgHide{
+  visibility: visible;
+}
+.bgHide:hover{
+visibility: hidden;
+}
+.discoverProducts{
+  background-image: 
+  url(https://static.wixstatic.com/media/2e2a49_d8f32742409844c59aefab5e448d83be~mv2.jpg/v1/fill/w_538,h_682,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/2e2a49_d8f32742409844c59aefab5e448d83be~mv2.jpg);
+  background-size: contain;
+  background-image: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 732;
+  
+  width: 732px;
+}
+.skinCare
+{
+  background-image:
+  url(https://static.wixstatic.com/media/2e2a49_37afad752477458cbc7a9b205e02caae~mv2.jpg/v1/fill/w_1176,h_711,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/2e2a49_37afad752477458cbc7a9b205e02caae~mv2.jpg);
+  background-size: cover;
+  background-position: center;
+  height:100%;
+  width: 100%;
+}
+.newProducts
+{
+  background-image: 
+  url(https://static.wixstatic.com/media/2e2a49_4162fc0858e24ed190ce6bf5b4100590~mv2.jpg/v1/fill/w_980,h_245,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/2e2a49_4162fc0858e24ed190ce6bf5b4100590~mv2.jpg);
+  background-size:cover;
+  background-position: center;
+  height:100%;
+  width: 100%;
+}
+
+
+.bestSellers
+{
+  background-image: url(https://static.wixstatic.com/media/2e2a49_cad6f2e23e5345928667147c8a695e14~mv2.jpg/v1/fill/w_980,h_245,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/2e2a49_cad6f2e23e5345928667147c8a695e14~mv2.jpg);
+  background-size:cover;
+  background-position: center;
+  height:100%;
+  width: 100%;
+}
+.Face
+{
+  background-image: url(https://static.wixstatic.com/media/2e2a49_23bc61d38ef443dbaa84ec03e818703d~mv2.jpg/v1/fill/w_980,h_245,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/2e2a49_23bc61d38ef443dbaa84ec03e818703d~mv2.jpg);
+  background-size:cover;
+  background-position: center;
+  height:100%;
+  width: 100%;
+}
+.Lips
+{
+  background-image: url(https://static.wixstatic.com/media/2e2a49_c3d7ce0f6aa84b57a2228e4cc24cc616~mv2.jpg/v1/fill/w_980,h_245,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/2e2a49_c3d7ce0f6aa84b57a2228e4cc24cc616~mv2.jpg);
+  background-size:cover;
+  background-position: center;
+  height:100%;
+  width: 100%;
+}
+.Eyes
+{
+  background-image: url(https://static.wixstatic.com/media/2e2a49_10c614d89f2c46ce98a15cfc0b5909f3~mv2.jpg/v1/fill/w_980,h_245,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/2e2a49_10c614d89f2c46ce98a15cfc0b5909f3~mv2.jpg);
+  background-size:cover;
+  background-position: center;
+  height:100%;
+  width: 100%;
+
+}

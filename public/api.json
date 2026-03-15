@@ -1,0 +1,251 @@
+[
+    
+        
+    
+        
+        {
+            "id":"Lips_1 ",
+            "img":"https://static.wixstatic.com/media/2e2a49_5ba7ad665c3b4f45b1691bf1833ef2ca~mv2.jpg/v1/fill/w_500,h_500,al_c,q_85,usm_0.66_1.00_0.01/2e2a49_5ba7ad665c3b4f45b1691bf1833ef2ca~mv2.webp",
+            "img2":"https://static.wixstatic.com/media/2e2a49_6e1d66febc3e499bb1d285e157f1390e~mv2.jpg/v1/fill/w_85,h_85,al_c,q_80,usm_0.66_1.00_0.01/2e2a49_6e1d66febc3e499bb1d285e157f1390e~mv2.webp",
+            "name":"Luxe Velvet Lipstick",
+            "Price":"15.00",
+            "des":"I'm a product detail. I'm a great place to add more information about your product such as sizing, material, care and cleaning instructions. This is also a great space to write what makes this product special and how your customers can benefit from this item.",
+            "code":"SKU001",
+            "popular":"false",
+            "category":"Lips",
+            "newProducts":"new"
+        },
+        {
+            "id":"Lips_2 ",
+            "img":"https://static.wixstatic.com/media/2e2a49_a7266fc29d5b4d05880cc799928ab5e1~mv2.jpg/v1/fill/w_177,h_177,al_c,q_80,usm_0.66_1.00_0.01/2e2a49_a7266fc29d5b4d05880cc799928ab5e1~mv2.webp",
+            "img2":"https://static.wixstatic.com/media/2e2a49_6e1d66febc3e499bb1d285e157f1390e~mv2.jpg/v1/fill/w_85,h_85,al_c,q_80,usm_0.66_1.00_0.01/2e2a49_6e1d66febc3e499bb1d285e157f1390e~mv2.webp",
+            "name":"Luxe Ruby Lipstick",
+            "Price":"15.00",
+            "des":"I'm a product detail. I'm a great place to add more information about your product such as sizing, material, care and cleaning instructions. This is also a great space to write what makes this product special and how your customers can benefit from this item.",
+            "code":"SKU002",
+            "popular":"false",
+            "category":"Lips"
+        },{
+            "id":"Lips_3 ",
+            "img":"https://static.wixstatic.com/media/2e2a49_493d75f7ab9444e494ee62ddc29c7781~mv2.jpg/v1/fill/w_177,h_177,al_c,q_80,usm_0.66_1.00_0.01/2e2a49_493d75f7ab9444e494ee62ddc29c7781~mv2.webp",
+            "img2":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSklHRKcV25rqDxkTEntMQJ5jHAY2Iq8OQOow&usqp=CAU",
+            "name":"Luxe Nude Lipstick",
+            "Price":"15.00",
+            "des":"I'm a product detail. I'm a great place to add more information about your product such as sizing, material, care and cleaning instructions. This is also a great space to write what makes this product special and how your customers can benefit from this item.",
+            "code":"SKU003",
+            "popular":"true",
+            "category":"Lips"
+        },{
+            "id":"Lips_4 ",
+            "img":"https://static.wixstatic.com/media/2e2a49_87208d6c5fdc462a832dc5e3a352e6ec~mv2.jpg/v1/fill/w_85,h_85,al_c,q_80,usm_0.66_1.00_0.01/2e2a49_87208d6c5fdc462a832dc5e3a352e6ec~mv2.webp",
+            "img2":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVFhWESAzNHmW2kfUZS8F2Ww_JAZTWL4vsHw&usqp=CAU",
+            "name":"Chocolate Kiss",
+            "Price":"15.00",
+            "des":"I'm a product detail. I'm a great place to add more information about your product such as sizing, material, care and cleaning instructions. This is also a great space to write what makes this product special and how your customers can benefit from this item.",
+            "code":"SKU004",
+            "popular":"false",
+            "category":"Lips"
+        },
+        {
+            "id":"Lips_5 ",
+            "img":"https://static.wixstatic.com/media/2e2a49_339f0d93b2c5424db5457ea307631172~mv2.jpg/v1/fill/w_500,h_500,al_c,q_85,usm_0.66_1.00_0.01/2e2a49_339f0d93b2c5424db5457ea307631172~mv2.webp",
+            "img2":"https://static.wixstatic.com/media/2e2a49_d56e97b437104d0f947c2d788738b5ee~mv2.jpg/v1/fill/w_177,h_177,al_c,q_80,usm_0.66_1.00_0.01/2e2a49_d56e97b437104d0f947c2d788738b5ee~mv2.webp",
+            "name":"Glossy Rose",
+            "Price":"15.00",
+            "des":"I'm a product detail. I'm a great place to add more information about your product such as sizing, material, care and cleaning instructions. This is also a great space to write what makes this product special and how your customers can benefit from this item.",
+            "code":"SKU005",
+            "popular":"true",
+            "category":"Lips"
+        },
+        {
+            "id":"Lips_7",
+            "img":"https://static.wixstatic.com/media/2e2a49_3b8883cdc38c4e039767257f526d7e03~mv2.jpg/v1/fill/w_85,h_85,al_c,q_80,usm_0.66_1.00_0.01/2e2a49_3b8883cdc38c4e039767257f526d7e03~mv2.webp",
+           "img2":"data:image/jpeg;base64,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",
+            "name":"Brown Power Lip Pencil",
+            "Price":"15.00",
+            "des":"I'm a product detail. I'm a great place to add more information about your product such as sizing, material, care and cleaning instructions. This is also a great space to write what makes this product special and how your customers can benefit from this item.",
+            "code":"SKU005",
+            "popular":"true",
+            "category":"Lips",
+            "newProducts":"new"
+
+        },
+
+    
+            {
+           "id":"Face1",
+           "img":"https://static.wixstatic.com/media/2e2a49_7f55aecb64ae432bbdfb4962a3917563~mv2.jpg/v1/fill/w_500,h_500,al_c,q_85,usm_0.66_1.00_0.01/2e2a49_7f55aecb64ae432bbdfb4962a3917563~mv2.webp",
+           "img2":"https://static.wixstatic.com/media/2e2a49_2be75b0ffb3c4a6f8fe075ab6dbe2115~mv2.jpg/v1/fill/w_85,h_85,al_c,q_80,usm_0.66_1.00_0.01/2e2a49_2be75b0ffb3c4a6f8fe075ab6dbe2115~mv2.webp",
+           "name":"Full Coverage Slick  Beam Fluid Foundation",
+          "des":"I'm a product detail. I'm a great place to add more information about your product such as sizing, material, care and cleaning instructions. This is also a great space to write what makes this product special and how your customers can benefit from this item.",
+           "code":"SKU006",
+       
+           "Price":"15.00",
+           "popular":"false",
+            "category":"Face"
+       },
+       {
+      "id":"Face2",
+      "img":"https://static.wixstatic.com/media/2e2a49_5b31605649274cd39dd3f1fe578a3911~mv2.jpg/v1/fill/w_85,h_85,al_c,q_80,usm_0.66_1.00_0.01/2e2a49_5b31605649274cd39dd3f1fe578a3911~mv2.webp",
+      "img2":"https://static.wixstatic.com/media/2e2a49_7b65a59cb6334e569bad8c08e3bbb041~mv2.jpg/v1/fill/w_85,h_85,al_c,q_80,usm_0.66_1.00_0.01/2e2a49_7b65a59cb6334e569bad8c08e3bbb041~mv2.webp",
+      "name":"Full Coverage Slick Fluid Foundation",
+     "des":"I'm a product detail. I'm a great place to add more information about your product such as sizing, material, care and cleaning instructions. This is also a great space to write what makes this product special and how your customers can benefit from this item.",
+      "code":"SKU007",
+      "Price":"15.00",
+      "popular":"true",
+            "category":"Face"
+  
+  },
+  {
+ "id":"Face3",
+ "img":"https://static.wixstatic.com/media/2e2a49_bb016bf6135c4b1f874fab6b9086ae74~mv2.jpg/v1/fill/w_85,h_85,al_c,q_80,usm_0.66_1.00_0.01/2e2a49_bb016bf6135c4b1f874fab6b9086ae74~mv2.webp",
+ "img2":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAavcQWXj4q_lHpSb1JZoPp8rsI-2jyXbO2w&usqp=CAU",
+ "name":"Brown Kiss Powder Foundation",
+"des":"I'm a product detail. I'm a great place to add more information about your product such as sizing, material, care and cleaning instructions. This is also a great space to write what makes this product special and how your customers can benefit from this item.",
+ "code":"SKU008",
+
+ "Price":"15.00",
+ "popular":"false",
+            "category":"Face"
+} ,
+{
+"id":"Face4",
+"img":"https://static.wixstatic.com/media/2e2a49_bb016bf6135c4b1f874fab6b9086ae74~mv2.jpg/v1/fill/w_85,h_85,al_c,q_80,usm_0.66_1.00_0.01/2e2a49_bb016bf6135c4b1f874fab6b9086ae74~mv2.webp",
+"img2":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSuAWdtGX6XEBKhUTR0rvBuGnMuN73pEiKzIA&usqp=CAU",
+"name":"Sheer Powder Foumdation",
+"des":"I'm a product detail. I'm a great place to add more information about your product such as sizing, material, care and cleaning instructions. This is also a great space to write what makes this product special and how your customers can benefit from this item.",
+"code":"SKU009",
+"Price":"15.00",
+"popular":"false",
+            "category":"Eye"
+},
+{
+    "id":"Face5",
+    "img":"https://static.wixstatic.com/media/2e2a49_bad9195131ce4394a7872eb2f493ec14~mv2.jpg/v1/fill/w_85,h_85,al_c,q_80,usm_0.66_1.00_0.01/2e2a49_bad9195131ce4394a7872eb2f493ec14~mv2.webp",
+    "img2":"https://images.herzindagi.info/image/2022/Feb/pink-setting-powder.jpg",
+    "name":"Geisha Powder Foundation",
+    "des":"I'm a product detail. I'm a great place to add more information about your product such as sizing, material, care and cleaning instructions. This is also a great space to write what makes this product special and how your customers can benefit from this item.",
+    "code":"SKU010",
+    "Price":"15.00",
+    "popular":"false",
+            "category":"Face"
+},
+{
+    "id":"Face6",
+    "img":"https://static.wixstatic.com/media/2e2a49_1ca681dc7dee46d5ba9a14d5e812ea1d~mv2.jpg/v1/fill/w_85,h_85,al_c,q_80,usm_0.66_1.00_0.01/2e2a49_1ca681dc7dee46d5ba9a14d5e812ea1d~mv2.webp",
+    "img2":"data:image/jpeg;base64,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",
+    "name":"Satin Fluid Sculpting Makeup",
+    "des":"I'm a product detail. I'm a great place to add more information about your product such as sizing, material, care and cleaning instructions. This is also a great space to write what makes this product special and how your customers can benefit from this item.",
+    "code":"SKU018",
+    "Price":"15.00",
+    "popular":"false",
+            "category":"Face"
+},
+    
+        {
+       "id":"Eyes_1",
+       "img":"https://static.wixstatic.com/media/2e2a49_fb724814678a446a845829490af44f51~mv2.jpg/v1/fill/w_85,h_85,al_c,q_80,usm_0.66_1.00_0.01/2e2a49_fb724814678a446a845829490af44f51~mv2.webp",
+       "img2":"data:image/jpeg;base64,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",
+       "name":"Essential Copper Eyeshadow",
+      "des":"I'm a product detail. I'm a great place to add more information about your product such as sizing, material, care and cleaning instructions. This is also a great space to write what makes this product special and how your customers can benefit from this item.",
+       "code":"SKU011",
+       "Price":"15.00",
+       "popular":"false",
+            "category":"Eye",
+            "newProducts":"new"
+   
+   } ,
+   {
+  "id":"Eyes_2",
+  "img":"   https://static.wixstatic.com/media/2e2a49_72ff8b4b98fc4e6ab14f1a6815b7ebd0~mv2.jpg/v1/fill/w_85,h_85,al_c,q_80,usm_0.66_1.00_0.01/2e2a49_72ff8b4b98fc4e6ab14f1a6815b7ebd0~mv2.webp",
+  "img2":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHIhTKAe0FScihGDI-t5EEOIVXoDpys9ofkA&usqp=CAU",
+  "name":"Essential Bronze Eyeshadow",
+ "des":"I'm a product detail. I'm a great place to add more information about your product such as sizing, material, care and cleaning instructions. This is also a great space to write what makes this product special and how your customers can benefit from this item.",
+  "code":"SKU012",
+  "Price":"15.00",
+  "popular":"false",
+            "category":"Eye"
+
+},
+{
+"id":"Eyes_3",
+"img":"https://static.wixstatic.com/media/2e2a49_327fab297d8049b8b167dee18144c52b~mv2.jpg/v1/fill/w_500,h_500,al_c,q_85,usm_0.66_1.00_0.01/2e2a49_327fab297d8049b8b167dee18144c52b~mv2.webp",
+"img2":"https://static.wixstatic.com/media/2e2a49_327fab297d8049b8b167dee18144c52b~mv2.jpg/v1/fill/w_500,h_500,al_c,q_85,usm_0.66_1.00_0.01/2e2a49_327fab297d8049b8b167dee18144c52b~mv2.webp",
+"name":"Dazzle Pink Eyeshadow",
+"des":"I'm a product detail. I'm a great place to add more information about your product such as sizing, material, care and cleaning instructions. This is also a great space to write what makes this product special and how your customers can benefit from this item.",
+"code":"SKU013",
+"Price":"15.00",
+"popular":"true",
+            "category":"Eye"
+            } ,
+
+{
+"id":"Eyes_4",
+"img":"https://static.wixstatic.com/media/2e2a49_3f62b0573f4348af80ab6c5181114545~mv2.jpg/v1/fill/w_85,h_85,al_c,q_80,usm_0.66_1.00_0.01/2e2a49_3f62b0573f4348af80ab6c5181114545~mv2.webp",
+"img2":"data:image/jpeg;base64,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",
+"name":"Essential Golden EyeShadow",
+"des":"I'm a product detail. I'm a great place to add more information about your product such as sizing, material, care and cleaning instructions. This is also a great space to write what makes this product special and how your customers can benefit from this item.",
+"code":"SKU014",
+"Price":"15.00",
+"popular":"false",
+            "category":"Eye"
+},
+
+{
+"id":"Eyes_5",
+"img":"https://static.wixstatic.com/media/2e2a49_3bfbaaf57db54b8a9c45eaddedfad369~mv2.jpg/v1/fill/w_85,h_85,al_c,q_80,usm_0.66_1.00_0.01/2e2a49_3bfbaaf57db54b8a9c45eaddedfad369~mv2.webp",
+"img2":"data:image/jpeg;base64,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",
+"name":"Essential Silver Eyeshadow",
+"des":"I'm a product detail. I'm a great place to add more information about your product such as sizing, material, care and cleaning instructions. This is also a great space to write what makes this product special and how your customers can benefit from this item.",
+"code":"SKU019",
+"Price":"15.00",
+"popular":"false",
+            "category":"Eye"
+},
+{
+    "id":"Eyes_6",
+    "img":"https://static.wixstatic.com/media/2e2a49_4c357b37aec9470d8798fe5013f69079~mv2.jpg/v1/fill/w_500,h_500,al_c,q_85,usm_0.66_1.00_0.01/2e2a49_4c357b37aec9470d8798fe5013f69079~mv2.webp",
+    "img2":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0UUXOkYzNqID5dVgbXLEdZNf9ZnCMnq6S9ghzYv0pjFZ5xA2CX5sNi2jomkN3b0vS6UQ&usqp=CAU",
+    "name":"Essential Halcyon Eyeshadow",
+    "des":"I'm a product detail. I'm a great place to add more information about your product such as sizing, material, care and cleaning instructions. This is also a great space to write what makes this product special and how your customers can benefit from this item.",
+    "code":"SKU020",
+    "Price":"15.00",
+    "newProducts":"new"
+},
+{
+    "id":"Eyes_7",
+    "img":"https://static.wixstatic.com/media/2e2a49_0c2a7fffb6234296bcf0f10b74840fcd~mv2.jpg/v1/fill/w_500,h_500,al_c,q_85,usm_0.66_1.00_0.01/2e2a49_0c2a7fffb6234296bcf0f10b74840fcd~mv2.webp",
+    "img2":"https://static.wixstatic.com/media/2e2a49_9948238a60524f048df9c3de69dadb07~mv2.jpg/v1/fill/w_85,h_85,al_c,q_80,usm_0.66_1.00_0.01/2e2a49_9948238a60524f048df9c3de69dadb07~mv2.webp",
+    "name":"Multipack Eyeshadow",
+    "des":"I'm a product detail. I'm a great place to add more information about your product such as sizing, material, care and cleaning instructions. This is also a great space to write what makes this product special and how your customers can benefit from this item.",
+    "code":"SKU017",
+    "Price":"15.00",
+    "popular":"true",
+            "category":"Eye",
+            "newProducts":"new"
+},
+{
+    "id":"Eyes_8",
+    "img":"https://static.wixstatic.com/media/2e2a49_36788be7777f4ad69596f0e1c949bb7b~mv2.jpg/v1/fill/w_500,h_500,al_c,q_85,usm_0.66_1.00_0.01/2e2a49_36788be7777f4ad69596f0e1c949bb7b~mv2.webp",
+    "img2":"https://static.wixstatic.com/media/2e2a49_de152b4ef07640fabd5b4cf16aa26c70~mv2.jpg/v1/fill/w_85,h_85,al_c,q_80,usm_0.66_1.00_0.01/2e2a49_de152b4ef07640fabd5b4cf16aa26c70~mv2.webp",
+    "name":"Black Power Pencil",
+    "des":"I'm a product detail. I'm a great place to add more information about your product such as sizing, material, care and cleaning instructions. This is also a great space to write what makes this product special and how your customers can benefit from this item.",
+    "code":"SKU016",
+    "Price":"15.00",
+    "popular":"true",
+            "category":"Eye",
+            "newProducts":"new"
+},
+{
+    
+    "id":"Eyes_9",
+    "img":"https://static.wixstatic.com/media/2e2a49_5081d0686f404e7ead2806b4d67bd7de~mv2.jpg/v1/fill/w_316,h_316,al_c,q_80,usm_0.66_1.00_0.01/2e2a49_5081d0686f404e7ead2806b4d67bd7de~mv2.webp",
+    "img2":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqnJzf0esVoS-2FpwtD2YXQGd5nl77rjJ0BQ&usqp=CAU",
+    "name":"Fem Brushstroke Eyeliner",
+    "des":"I'm a product detail. I'm a great place to add more information about your product such as sizing, material, care and cleaning instructions. This is also a great space to write what makes this product special and how your customers can benefit from this item.",
+    "code":"SKU017",
+    "Price":"15.00",
+    "popular":"false",
+            "category":"Eye"
+}
+]
