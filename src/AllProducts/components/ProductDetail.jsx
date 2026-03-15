@@ -19,6 +19,7 @@ const ProductDetail = () => {
   // Fetch product from API if ID is in URL
   useEffect(() => {
     if (productIdFromUrl) {
+      setApiProduct(null); // Clear previous product while loading
       setLoading(true);
       console.log("Fetching product with ID:", productIdFromUrl);
       fetch(`${API_URL}/api/products.php?id=${productIdFromUrl}`)
@@ -39,8 +40,9 @@ const ProductDetail = () => {
     }
   }, [productIdFromUrl, API_URL]);
 
-  // Use apiProduct if fetched, otherwise use product from state
-  const displayProduct = apiProduct || product;
+  // When URL has ID, use API product only (don't fall back to Jotai store)
+  // Otherwise use the Jotai store product
+  const displayProduct = productIdFromUrl ? apiProduct : product;
 
   console.log("Display Product:", displayProduct);
   console.log("Product ID from URL:", productIdFromUrl);
