@@ -70,7 +70,7 @@ const BestSellers = () => {
                   </div>
                   <p className="text-black ml-16">{item?.name}</p>
                   <p className="text-black ml-16">{item?.code}</p>
-                  <p className="text-black ml-16">{item?.price}</p>
+                  <p className="text-black ml-16">₹{item?.price?.slice(1)}</p>
                 </div>
               </NavLink>
             ))}

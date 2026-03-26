@@ -26,7 +26,7 @@ const Card = ({ id, image1, image2, title, price }) => {
         )}
       </div>
       <p className=" text-base text-black text-center">{title}</p>
-      <p className="text-base text-black text-center">{price}</p>
+      <p className="text-base text-black text-center">₹{price}</p>
     </NavLink>
   );
 };

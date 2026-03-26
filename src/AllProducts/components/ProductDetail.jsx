@@ -124,8 +124,8 @@ const ProductDetail = () => {
                 <span className="text-3xl font-bold text-[#593735]">
                   {typeof displayProduct.price === "string" &&
                   displayProduct.price.includes("$")
-                    ? displayProduct.price
-                    : `$${displayProduct.price}`}
+                    ? `₹${displayProduct.price.slice(1)}` // Remove $ if present
+                    : `₹${displayProduct.price}`}
                 </span>
               </div>
 

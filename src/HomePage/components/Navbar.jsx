@@ -102,7 +102,12 @@ const Navbar = () => {
   useEffect(() => {
     let total = 0;
     if (cart && cart.length > 0) {
-      total = cart.reduce((sum, item) => sum + (item?.total_price || 0), 0);
+      total = cart.reduce((sum, item) => {
+        const price = typeof item?.price === 'number' 
+          ? item?.price 
+          : parseFloat(item?.price) || 0;
+        return sum + (price * (item?.quantity || 1));
+      }, 0);
     }
     setGrandTotal(total);
   }, [cart]);
@@ -257,7 +262,7 @@ const Navbar = () => {
                             {item?.name}
                           </h1>
                           <p className="text-xs text-gray-600 mt-1">
-                            ${parseFloat(item?.price).toFixed(2)}
+                            ₹{parseFloat(item?.price).toFixed(2)}
                           </p>
 
                           {/* Quantity Controls */}
@@ -296,7 +301,7 @@ const Navbar = () => {
                           {/* Price and Delete */}
                           <div className="flex justify-between items-center mt-2">
                             <p className="text-sm font-semibold text-black">
-                              $
+                              ₹
                               {parseFloat(
                                 item?.total_price ||
                                   item?.price * item?.quantity,
@@ -322,7 +327,7 @@ const Navbar = () => {
                 <div className="flex justify-between items-center px-2">
                   <span className="font-semibold text-black">Subtotal:</span>
                   <span className="text-lg font-bold text-[#593735]">
-                    ${parseFloat(grandTotal || 0).toFixed(2)}
+                    ₹{parseFloat(grandTotal || 0).toFixed(2)}
                   </span>
                 </div>
                 <button

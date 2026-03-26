@@ -162,7 +162,7 @@ const AllMakeup = () => {
                 <div className="ml-16">
                   <p className="">{item?.name}</p>
                   <p>{item?.code}</p>
-                  <p>{item?.price}</p>
+                  <p>₹{item?.price?.slice(1)}</p>
                   {/* <p>{item?.des}</p> */}
                 </div>
               </div>{" "}

@@ -56,7 +56,7 @@ const BestSellers = () => {
             image1={item?.img}
             image2={item?.img2}
             title={item?.name}
-            price={item?.price}
+            price={item?.price?.slice(1)}
           />
         ))}
       </div>
